@@ -236,6 +236,8 @@ $rules[] = Rule::allClasses()
     ->that(new ResideInOneOfTheseNamespaces('App\Controller'))
     ->should(new Extend('App\Controller\AbstractController'))
     ->because('we want to be sure that all controllers extend AbstractController');
+
+You can add multiple parameters, the violation will happen when none of them match
 ```
 
 ### Has an attribute (requires PHP >= 8.0)
@@ -301,6 +303,15 @@ $rules[] = Rule::allClasses()
     ->because('we want to be sure that aggregates are final classes');
 ```
 
+### Is readonly
+
+```php
+$rules[] = Rule::allClasses()
+    ->that(new ResideInOneOfTheseNamespaces('App\Domain\ValueObjects'))
+    ->should(new IsReadonly())
+    ->because('we want to be sure that value objects are readonly classes');
+```
+
 ### Is interface
 
 ```php
@@ -346,6 +357,15 @@ $rules[] = Rule::allClasses()
     ->because('we want to be sure that our adapters are not final classes');
 ```
 
+### Is not readonly
+
+```php
+$rules[] = Rule::allClasses()
+    ->that(new ResideInOneOfTheseNamespaces('App\Domain\Entity'))
+    ->should(new IsNotReadonly())
+    ->because('we want to be sure that there are no readonly entities');
+```
+
 ### Is not interface
 
 ```php
@@ -380,6 +400,8 @@ $rules[] = Rule::allClasses()
     ->that(new ResideInOneOfTheseNamespaces('App\Controller\Admin'))
     ->should(new NotExtend('App\Controller\AbstractController'))
     ->because('we want to be sure that all admin controllers not extend AbstractController for security reasons');
+
+You can add multiple parameters, the violation will happen when one of them match
 ```
 
 ### Don't have dependency outside a namespace
@@ -387,7 +409,7 @@ $rules[] = Rule::allClasses()
 ```php
 $rules[] = Rule::allClasses()
     ->that(new ResideInOneOfTheseNamespaces('App\Domain'))
-    ->should(new NotHaveDependencyOutsideNamespace('App\Domain', ['Ramsey\Uuid']))
+    ->should(new NotHaveDependencyOutsideNamespace('App\Domain', ['Ramsey\Uuid'], true))
     ->because('we want protect our domain except for Ramsey\Uuid');
 ```
 
