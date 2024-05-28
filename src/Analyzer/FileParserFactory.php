@@ -10,7 +10,7 @@ use PhpParser\NodeTraverser;
 class FileParserFactory
 {
     public static function createFileParser(
-        TargetPhpVersion $targetPhpVersion = null,
+        ?TargetPhpVersion $targetPhpVersion = null,
         bool $parseCustomAnnotations = true
     ): FileParser {
         return new FileParser(
