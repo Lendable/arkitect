@@ -26,6 +26,7 @@ class HaveCorrespondingUnitTest extends TestCase
             false,
             false,
             false,
+            false,
             false
         );
         $constraint = new HaveCorrespondingUnit(
@@ -49,6 +50,7 @@ class HaveCorrespondingUnitTest extends TestCase
             [],
             [],
             null,
+            false,
             false,
             false,
             false,

@@ -16,19 +16,19 @@ class FileParserTest extends TestCase
 {
     public function test_parse_file(): void
     {
-        $traverser = $this->prophesize(NodeTraverser::class);
-        $fileVisitor = $this->prophesize(FileVisitor::class);
-        $nameResolver = $this->prophesize(NameResolver::class);
+        $traverser = $this->createMock(NodeTraverser::class);
+        $fileVisitor = $this->createMock(FileVisitor::class);
+        $nameResolver = $this->createMock(NameResolver::class);
 
         $traverser->addVisitor($nameResolver);
         $traverser->addVisitor($fileVisitor);
 
-        $fileVisitor->clearParsedClassDescriptions()->shouldBeCalled();
+        $fileVisitor->expects($this->once())->method('clearParsedClassDescriptions');
 
         $fileParser = new FileParser(
-            $traverser->reveal(),
-            $fileVisitor->reveal(),
-            $nameResolver->reveal(),
+            $traverser,
+            $fileVisitor,
+            $nameResolver,
             TargetPhpVersion::create('7.4')
         );
 
@@ -36,7 +36,7 @@ class FileParserTest extends TestCase
         class Foo {}
         ';
 
-        $traverser->traverse(Argument::type('array'))->shouldBeCalled();
+        $traverser->expects($this->once())->method('traverse')->with($this->isType('array'));
         $fileParser->parse($content, 'foo');
     }
 
@@ -45,19 +45,19 @@ class FileParserTest extends TestCase
      */
     public function test_parse_file_with_name_match(): void
     {
-        $traverser = $this->prophesize(NodeTraverser::class);
-        $fileVisitor = $this->prophesize(FileVisitor::class);
-        $nameResolver = $this->prophesize(NameResolver::class);
+        $traverser = $this->createMock(NodeTraverser::class);
+        $fileVisitor = $this->createMock(FileVisitor::class);
+        $nameResolver = $this->createMock(NameResolver::class);
 
         $traverser->addVisitor($nameResolver);
         $traverser->addVisitor($fileVisitor);
 
-        $fileVisitor->clearParsedClassDescriptions()->shouldBeCalled();
+        $fileVisitor->expects($this->once())->method('clearParsedClassDescriptions');
 
         $fileParser = new FileParser(
-            $traverser->reveal(),
-            $fileVisitor->reveal(),
-            $nameResolver->reveal(),
+            $traverser,
+            $fileVisitor,
+            $nameResolver,
             TargetPhpVersion::create('7.4')
         );
 
@@ -65,7 +65,7 @@ class FileParserTest extends TestCase
         class Match {}
         ';
 
-        $traverser->traverse(Argument::type('array'))->shouldBeCalled();
+        $traverser->expects($this->once())->method('traverse')->with($this->isType('array'));
         $fileParser->parse($content, 'foo');
     }
 }

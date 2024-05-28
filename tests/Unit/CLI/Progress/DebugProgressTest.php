@@ -13,37 +13,37 @@ class DebugProgressTest extends TestCase
 {
     public function test_it_should_generate_text_on_start_parsing_file(): void
     {
-        $output = $this->prophesize(OutputInterface::class);
-        $debugProgress = new DebugProgress($output->reveal());
+        $output = $this->createMock(OutputInterface::class);
+        $debugProgress = new DebugProgress($output);
 
-        $output->writeln('parsing filename')->shouldBeCalled();
+        $output->expects($this->once())->method('writeln')->with('parsing filename');
         $debugProgress->startParsingFile('filename');
     }
 
     public function test_it_should_generate_text_on_start_file_set_analysis(): void
     {
-        $output = $this->prophesize(OutputInterface::class);
-        $debugProgress = new DebugProgress($output->reveal());
+        $output = $this->createMock(OutputInterface::class);
+        $debugProgress = new DebugProgress($output);
 
-        $output->writeln('Start analyze dir directory')->shouldBeCalled();
+        $output->expects($this->once())->method('writeln')->with('Start analyze dir directory');
         $debugProgress->startFileSetAnalysis(ClassSet::fromDir('directory'));
     }
 
     public function test_it_should_not_generate_text_on_end_parsing_file(): void
     {
-        $output = $this->prophesize(OutputInterface::class);
-        $debugProgress = new DebugProgress($output->reveal());
+        $output = $this->createMock(OutputInterface::class);
+        $debugProgress = new DebugProgress($output);
 
-        $output->writeln()->shouldNotBeCalled();
+        $output->expects($this->never())->method('writeln');
         $debugProgress->endParsingFile('filename');
     }
 
     public function test_it_should_not_generate_text_on_end_file_set_analysis(): void
     {
-        $output = $this->prophesize(OutputInterface::class);
-        $debugProgress = new DebugProgress($output->reveal());
+        $output = $this->createMock(OutputInterface::class);
+        $debugProgress = new DebugProgress($output);
 
-        $output->writeln()->shouldNotBeCalled();
+        $output->expects($this->never())->method('writeln');
         $debugProgress->endFileSetAnalysis(ClassSet::fromDir('directory'));
     }
 }

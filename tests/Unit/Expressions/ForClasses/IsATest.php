@@ -30,6 +30,7 @@ final class IsATest extends TestCase
             false,
             false,
             false,
+            false,
             false
         );
 
@@ -48,6 +49,7 @@ final class IsATest extends TestCase
             [],
             [],
             FullyQualifiedClassName::fromString($class),
+            false,
             false,
             false,
             false,
@@ -71,6 +73,7 @@ final class IsATest extends TestCase
             [],
             [],
             null,
+            false,
             false,
             false,
             false,

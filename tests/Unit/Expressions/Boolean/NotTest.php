@@ -23,6 +23,7 @@ class NotTest extends TestCase
             null,
             false,
             false,
+            false,
             true,
             false,
             false
@@ -48,6 +49,7 @@ class NotTest extends TestCase
             [],
             [],
             null,
+            false,
             false,
             false,
             false,
