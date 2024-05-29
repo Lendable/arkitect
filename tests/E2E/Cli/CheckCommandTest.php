@@ -162,8 +162,8 @@ App\Controller\Foo has 1 violations
 
     protected function runCheck(
         $configFilePath = null,
-        bool $stopOnFailure = null,
-        string $useBaseline = null,
+        ?bool $stopOnFailure = null,
+        ?string $useBaseline = null,
         $generateBaseline = false,
         bool $skipBaseline = false
     ): ApplicationTester {
@@ -195,7 +195,7 @@ App\Controller\Foo has 1 violations
         return $appTester;
     }
 
-    protected function assertCheckHasErrors(ApplicationTester $applicationTester, string $expectedOutput = null): void
+    protected function assertCheckHasErrors(ApplicationTester $applicationTester, ?string $expectedOutput = null): void
     {
         $this->assertEquals(self::ERROR_CODE, $applicationTester->getStatusCode());
         if (null != $expectedOutput) {
@@ -204,7 +204,7 @@ App\Controller\Foo has 1 violations
         }
     }
 
-    protected function assertCheckHasNoErrorsLike(ApplicationTester $applicationTester, string $expectedOutput = null): void
+    protected function assertCheckHasNoErrorsLike(ApplicationTester $applicationTester, ?string $expectedOutput = null): void
     {
         $this->assertEquals(self::ERROR_CODE, $applicationTester->getStatusCode());
         if (null != $expectedOutput) {
