@@ -24,6 +24,9 @@ class ClassDescription
     private $final;
 
     /** @var bool */
+    private $readonly;
+
+    /** @var bool */
     private $abstract;
 
     /** @var bool */
@@ -53,6 +56,7 @@ class ClassDescription
         array $interfaces,
         ?FullyQualifiedClassName $extends,
         bool $final,
+        bool $readonly,
         bool $abstract,
         bool $interface,
         bool $trait,
@@ -65,6 +69,7 @@ class ClassDescription
         $this->interfaces = $interfaces;
         $this->extends = $extends;
         $this->final = $final;
+        $this->readonly = $readonly;
         $this->abstract = $abstract;
         $this->docBlock = $docBlock;
         $this->attributes = $attributes;
@@ -149,6 +154,11 @@ class ClassDescription
     public function isFinal(): bool
     {
         return $this->final;
+    }
+
+    public function isReadonly(): bool
+    {
+        return $this->readonly;
     }
 
     public function isAbstract(): bool

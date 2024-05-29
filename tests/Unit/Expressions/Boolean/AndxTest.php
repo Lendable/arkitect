@@ -43,6 +43,7 @@ class AndxTest extends TestCase
             false,
             false,
             false,
+            false,
             false
         );
         $implementConstraint = new Implement($interface);
@@ -65,6 +66,7 @@ class AndxTest extends TestCase
             [],
             [FullyQualifiedClassName::fromString($interface)],
             FullyQualifiedClassName::fromString($class),
+            false,
             false,
             false,
             false,
@@ -94,6 +96,7 @@ class AndxTest extends TestCase
             false,
             false,
             false,
+            false,
             false
         );
 
@@ -113,7 +116,7 @@ class AndxTest extends TestCase
             ."  should implement SomeInterface\n"
             ."  because reasons\n"
             ."  AND\n"
-            ."  should extend SomeClass\n"
+            ."  should extend one of these classes: SomeClass\n"
             ."  because reasons\n"
             .")\n"
             .'because reasons',
@@ -121,13 +124,13 @@ class AndxTest extends TestCase
         );
         $this->assertEquals(
             "The class 'HappyIsland' violated the expression\n"
-            ."should extend SomeClass\n"
+            ."should extend one of these classes: SomeClass\n"
             ."from the rule\n"
             ."(\n"
             ."  should implement SomeInterface\n"
             ."  because reasons\n"
             ."  AND\n"
-            ."  should extend SomeClass\n"
+            ."  should extend one of these classes: SomeClass\n"
             ."  because reasons\n"
             .")\n"
             .'because reasons',

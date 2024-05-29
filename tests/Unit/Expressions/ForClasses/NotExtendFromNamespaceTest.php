@@ -25,6 +25,7 @@ class NotExtendFromNamespaceTest extends TestCase
             false,
             false,
             false,
+            false,
             false
         );
         $because = 'we want to add this rule for our software';
@@ -50,6 +51,7 @@ class NotExtendFromNamespaceTest extends TestCase
             false,
             false,
             false,
+            false,
             false
         );
 
@@ -68,6 +70,7 @@ class NotExtendFromNamespaceTest extends TestCase
             [],
             [],
             FullyQualifiedClassName::fromString('My\Yet\AnotherClass'),
+            false,
             false,
             false,
             false,
