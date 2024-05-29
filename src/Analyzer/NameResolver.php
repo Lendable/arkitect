@@ -90,7 +90,7 @@ class NameResolver extends NodeVisitorAbstract
     {
         if ($node instanceof Stmt\Namespace_) {
             $this->nameContext->startNamespace($node->name);
-        } elseif ($node instanceof Use_) {
+        } elseif ($node instanceof Stmt\Use_) {
             foreach ($node->uses as $use) {
                 $this->addAlias($use, $node->type, null);
             }
@@ -281,7 +281,7 @@ class NameResolver extends NodeVisitorAbstract
 
     protected function resolveClassName(Name $name): Name
     {
-        return $this->resolveName($name, Use_::TYPE_NORMAL);
+        return $this->resolveName($name, Stmt\Use_::TYPE_NORMAL);
     }
 
     /**
