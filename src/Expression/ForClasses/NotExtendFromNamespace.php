@@ -17,7 +17,7 @@ class NotExtendFromNamespace implements Expression
     private $namespace;
 
     /** @var string[] */
-    private array $exceptions;
+    private $exceptions;
 
     public function __construct(string $namespace, array $exceptions = [])
     {

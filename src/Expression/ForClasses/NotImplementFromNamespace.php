@@ -17,7 +17,7 @@ class NotImplementFromNamespace implements Expression
     private $namespace;
 
     /** @var string[] */
-    private array $exclusionList;
+    private $exclusionList;
 
     public function __construct(string $namespace, array $exclusionList = [])
     {

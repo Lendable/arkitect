@@ -109,7 +109,7 @@ class Architecture implements
         return $this;
     }
 
-    public function rules(string $because = null): iterable
+    public function rules(?string $because = null): iterable
     {
         foreach ($this->componentSelectors as $name => $selector) {
             if (isset($this->allowedDependencies[$name])) {
