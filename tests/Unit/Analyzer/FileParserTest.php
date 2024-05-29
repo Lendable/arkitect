@@ -10,7 +10,6 @@ use Arkitect\Analyzer\NameResolver;
 use Arkitect\CLI\TargetPhpVersion;
 use PhpParser\NodeTraverser;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 class FileParserTest extends TestCase
 {
